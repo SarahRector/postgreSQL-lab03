@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS plants;
 DROP TABLE IF EXISTS monsters;
+DROP TABLE IF EXISTS skates;
 
 CREATE TABLE plants (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -13,6 +14,13 @@ CREATE TABLE monsters (
   name TEXT NOT NULL,
   creepFactor INT,
   phrase TEXT
+);
+
+CREATE TABLE skates (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  owner TEXT NOT NULL,
+  brand TEXT,
+  wheels INT
 );
 
 
