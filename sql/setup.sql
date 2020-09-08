@@ -1,0 +1,18 @@
+DROP TABLE IF EXISTS plants;
+DROP TABLE IF EXISTS monsters;
+
+CREATE TABLE plants (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name TEXT NOT NULL,
+  leaves INT CHECK (leaves > 0),
+  height TEXT
+);
+
+CREATE TABLE monsters (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name TEXT NOT NULL,
+  creepFactor INT,
+  phrase TEXT
+);
+
+
