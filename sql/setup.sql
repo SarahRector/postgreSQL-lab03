@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS plants;
 DROP TABLE IF EXISTS monsters;
 DROP TABLE IF EXISTS skates;
+DROP TABLE IF EXISTS creatures;
 
 CREATE TABLE plants (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -21,6 +22,13 @@ CREATE TABLE skates (
   owner TEXT NOT NULL,
   brand TEXT,
   wheels INT
+);
+
+CREATE TABLE creatures (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name TEXT NOT NULL,
+  teeth INT CHECK (teeth > 0),
+  crazyfeature TEXT
 );
 
 
