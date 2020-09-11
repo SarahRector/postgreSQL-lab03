@@ -1,0 +1,42 @@
+DROP TABLE IF EXISTS plants;
+DROP TABLE IF EXISTS monsters;
+DROP TABLE IF EXISTS skates;
+DROP TABLE IF EXISTS creatures;
+DROP TABLE IF EXISTS games;
+
+CREATE TABLE plants (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name TEXT NOT NULL,
+  leaves INT CHECK (leaves > 0),
+  height TEXT
+);
+
+CREATE TABLE monsters (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name TEXT NOT NULL,
+  creepFactor INT,
+  phrase TEXT
+);
+
+CREATE TABLE skates (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  owner TEXT NOT NULL,
+  brand TEXT,
+  wheels INT
+);
+
+CREATE TABLE creatures (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name TEXT NOT NULL,
+  teeth INT CHECK (teeth > 0),
+  crazyfeature TEXT
+);
+
+CREATE TABLE games (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name TEXT NOT NULL,
+  players INT CHECK (players > 0),
+  rating TEXT
+);
+
+
