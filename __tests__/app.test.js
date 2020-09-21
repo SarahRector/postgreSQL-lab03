@@ -39,4 +39,65 @@ describe('postgreSQL-lab03 routes', () => {
       height: '2 feet'
     });
   });
+
+  it('gets all plants using a GET route', async() => {
+    await Promise.all([
+      Plant.insert({
+        name: 'cactus',
+        leaves: 5,
+        height: '2 feet'
+      }),
+      Plant.insert({
+        name: 'green thing',
+        leaves: 12,
+        height: '5 feet'
+      }),
+      Plant.insert({
+        name: 'fuzzy boi',
+        leaves: 8,
+        height: '3 feet'
+      })
+    ]);
+
+    const response = await request(app)
+      .get('/api/v1/plants');
+
+    expect(response.body).toEqual(expect.arrayContaining([
+      {
+        id: expect.any(String),
+        name: 'cactus',
+        leaves: 5,
+        height: '2 feet'
+      }, {
+        id: expect.any(String),
+        name: 'green thing',
+        leaves: 12,
+        height: '5 feet'
+      }, {
+        id: expect.any(String),
+        name: 'fuzzy boi',
+        leaves: 8,
+        height: '3 feet'
+      }
+    ]));
+  });
+
+  it('updates a plant using a PUT route', async() => {
+    const newPlant = await Plant.insert({
+      name: 'fuzzy boi',
+      leaves: 8,
+      height: '3 feet'
+    });
+
+    const response = await request(app)
+      .put(`/api/v1/plants/${newPlant.id}`)
+      .send(newPlant);
+
+    expect(response.body).toEqual({
+      id: expect.any(String),
+      name: 'fuzzy boi',
+      leaves: 8,
+      height: '3 feet'
+    });
+  });
 });
